@@ -19,9 +19,8 @@
 - Clone this repo locally using git in the command line and the following command
 
  ```bash
- > git clone https://github.com/fherrerao/OOP-School-Library ```
-
-
+ > git clone https://github.com/fherrerao/OOP-School-Library 
+ ```
 
 ### Step 2:
 
