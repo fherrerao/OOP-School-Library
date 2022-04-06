@@ -18,9 +18,9 @@
 
 - Clone this repo locally using git in the command line and the following command
 
- ```bash
- > git clone https://github.com/fherrerao/OOP-School-Library 
- ```
+```bash
+> git clone https://github.com/fherrerao/OOP-School-Library
+```
 
 ### Step 2:
 
@@ -37,8 +37,6 @@ In the project directory, you can run:
 - GitHub: [@fherrerao](https://github.com/fherrerao);
 - LinkedIn: [Fernando Herrera](https://www.linkedin.com/in/fherrerao/);
 - Twitter: [Fernando Herrera](https://twitter.com/fherrera0206);
-
-
 
 ## 🤝 Contributing
 
