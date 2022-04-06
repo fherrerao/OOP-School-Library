@@ -1,16 +1,16 @@
 require './person'
 
 class Student < Person
-  attr_accessor :classroom
+  attr_accessor :classrooms
 
   def initialize(classroom:, **options)
     super(**options)
     @classroom = classroom
   end
 
-  def classroom=(classroom)
-    @classroom = classroom
-    classroom.students << self unless classroom.students.include?(self)
+  def classroom=(classrooms)
+    @classrooms = classrooms
+    classrooms.students << self unless classrooms.students.include?(self)
   end
 
   def play_hooky
