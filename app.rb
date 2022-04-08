@@ -21,30 +21,40 @@ class App
     puts '7. Exit'
   end
 
+  def selection
+    loop do
+      menu
+      case gets.chomp
+      when '1', '2', '3'
+        tasks_1_3
+      when '4', '5', '6'
+        tasks_5_5
+      when '7'
+        exit
+      else
+        puts 'Invalid input'
+      end
+    end
+  end
+
   def run
     puts 'Welcome to School Library App!'
     puts
     puts 'Please select an option by enterin a number:'
-    loop do
-      menu
-      case gets.chomp
-      when '1'
-        list_books
-      when '2'
-        list_people
-      when '3'
-        create_person
-      when '4'
-        create_book
-      when '5'
-        create_rental
-      when '6'
-        list_rentals
-      when '7'
-        exit
-      end
-    end
+    selection
   end
+
+  def tasks_1_3
+    case gets.chomp
+    when '1'
+      list_books
+    when '2'
+      list_people
+    when '3'
+      create_person    
+  end
+
+  def tasks_4_7
 
   def list_books
     puts "BOOKS:\n"
@@ -129,7 +139,8 @@ class App
     puts 'RENTALS: '
     @people.each do |person|
       next unless person.id == id
-      person.rental.each do |rental|        
+
+      person.rental.each do |rental|
         puts "Date: #{rental.date} Book: #{rental.book.title} by #{rental.book.author}"
       end
     end
