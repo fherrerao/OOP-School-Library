@@ -24,11 +24,12 @@ class App
   def selection
     loop do
       menu
-      case gets.chomp
+      selection = gets.chomp
+      case selection
       when '1', '2', '3'
-        tasks_1_3
+        tasks_one_to_three(selection)
       when '4', '5', '6'
-        tasks_5_5
+        tasks_four_to_six(selection)
       when '7'
         exit
       else
@@ -44,17 +45,29 @@ class App
     selection
   end
 
-  def tasks_1_3
-    case gets.chomp
+  def tasks_one_to_three(selection)
+    case selection
     when '1'
       list_books
     when '2'
       list_people
     when '3'
-      create_person    
+      create_person
+    end
   end
 
-  def tasks_4_7
+  def tasks_four_to_six(selection)
+    case selection
+    when '4'
+      create_book
+    when '5'
+      create_rental
+    when '6'
+      list_rentals
+    else
+      puts 'Invalid input'
+    end
+  end
 
   def list_books
     puts "BOOKS:\n"
@@ -73,40 +86,29 @@ class App
   def create_person
     puts 'Do you want to create a student or a teacher? (S/T)'
     type = gets.chomp.downcase
+    type == 's' ? create_student(type) : create_teacher(type)
+  end
 
-    case type
-    when 's'
-      puts 'Please enter the name of the student:'
-      name = gets.chomp
-      puts 'Please enter the age of the student:'
-      age = gets.chomp.to_i
-      puts 'Please enter the parent permission of the student (Y/N):'
-      parent_permission = gets.chomp.upcase
+  def create_student(_type)
+    puts 'Please enter the name of the student:'
+    name = gets.chomp
+    puts 'Please enter the age of the student:'
+    age = gets.chomp.to_i
+    puts 'Please enter if the student has a parent permission (Y/N):'
+    parent_permission = gets.chomp.downcase
+    @people << Student.new(age: age, name: name, parent_permission: parent_permission)
+    puts 'Student created successfully!'
+  end
 
-      case parent_permission
-      when 'Y'
-        parent_permission = true
-      when 'N'
-        parent_permission = false
-      else
-        puts 'Invalid input'
-        return
-      end
-      @people << Student.new(age: age, name: name, parent_permission: parent_permission)
-      puts 'Student created successfully!'
-    when 't'
-      puts 'Please enter the name of the teacher:'
-      name = gets.chomp
-      puts 'Please enter the age of the teacher:'
-      age = gets.chomp.to_i
-      puts 'Please enter the specialization of the teacher:'
-      specialization = gets.chomp
-      @people << Teacher.new(age: age, name: name, specialization: specialization)
-      puts 'Teacher created successfully!'
-    else
-      puts 'Invalid input'
-      nil
-    end
+  def create_teacher(_type)
+    puts 'Please enter the name of the teacher:'
+    name = gets.chomp
+    puts 'Please enter the age of the teacher:'
+    age = gets.chomp.to_i
+    puts 'Please enter the specialization of the teacher:'
+    specialization = gets.chomp
+    @people << Teacher.new(age: age, name: name, specialization: specialization)
+    puts 'Teacher created successfully!'
   end
 
   def create_book
@@ -114,17 +116,16 @@ class App
     title = gets.chomp
     puts 'Enter author:'
     author = gets.chomp
-
     @books << Book.new(title, author)
+    puts 'Book created successfully!'
   end
 
   def create_rental
+    puts 'Select a book from the following list by number:'
     list_books
-    puts 'Enter the number of the book:'
     book_number = gets.chomp.to_i
     puts 'Select a person from the following list by number:'
     list_people
-    puts 'Enter the number of the person:'
     person_number = gets.chomp.to_i
     puts 'Enter the date of the rental (dd/mm/yyyy):'
     date = gets.chomp
