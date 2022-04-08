@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 require './person'
 require './book'
 require './rental'
